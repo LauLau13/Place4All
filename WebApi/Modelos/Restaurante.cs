@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace WebApi.Modelos
 {
     public class Restaurante
     {
-        [Required (ErrorMessage = "El id de dirección es obligatorio")]
-        public int ID { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public string Nombre { get; set; } = "";
         public Direccion Direccion { get; set; }
         public string Descripcion { get; set; } = "";
