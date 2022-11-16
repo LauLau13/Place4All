@@ -7,13 +7,13 @@ namespace WebApi.Modelos
 {
     public class Restaurante
     {
-        [Required]
-        private int ID { get; set; } 
-        private string Nombre { get; set; }
+        [Required (ErrorMessage = "El id de dirección es obligatorio")]
+        private int ID { get; set; }
+        private string Nombre { get; set; } = "";
         private Direccion Direccion { get; set; } //Tabla de direcciones
-        private string Descripcion { get; set; }
-        private string Telefono { get; set; }
-        private string Imagen { get; set; }
+        private string Descripcion { get; set; } = "";
+        private string Telefono { get; set; } = "";
+        private string Imagen { get; set; } = "";
         private list<Servicio> Servicio { get; set; }
 
     }
