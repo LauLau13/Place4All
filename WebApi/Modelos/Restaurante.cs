@@ -7,10 +7,10 @@ namespace WebApi.Modelos
 {
     public class Restaurante
     {
-        private int ID { get; set; }
         [Required]
+        private int ID { get; set; } 
         private string Nombre { get; set; }
-        private Direccion Direccion { get; set; }//Tabla de direcciones
+        private Direccion Direccion { get; set; } //Tabla de direcciones
         private string Descripcion { get; set; }
         private string Telefono { get; set; }
         private string Imagen { get; set; }
