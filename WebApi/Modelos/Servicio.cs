@@ -1,10 +1,14 @@
-﻿namespace WebApi.Modelos
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace WebApi.Modelos
 {
     public class Servicio
     {
-        private string Nombre { get; set; }
+        [Required(ErrorMessage = "El ID del Servicio es obligatorio")]
+        private int? ID { get; set; }
+        private string? Nombre { get; set; }
         private string Descripcion { get; set; }
-        private int ID { get; set; }
+        
 
     }
 }
