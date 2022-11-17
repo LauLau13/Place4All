@@ -1,7 +1,7 @@
 using MongoDB.Driver;
 using WebApi.Modelos;
 
-namespace WebApi.Servicios;
+namespace WebApi.Servicios
 {
     public class ServicioServicio
 {
@@ -10,7 +10,7 @@ namespace WebApi.Servicios;
     {
         var client = new MongoClient(settings.ConnectionString);
         var database = client.GetDatabase(settings.DatabaseName);
-        _servicios = database.GetCollection<Servicio>(settings.ServiciosCollectionName);
+        _servicios = database.GetCollection<Servicio>("Servicio");
     }
 
     public List<Servicio> Get() =>
