@@ -1,4 +1,5 @@
-﻿using WebApi.Modelos;
+﻿using System.Collections.Generic;
+using WebApi.Modelos;
 using MongoDB.Driver;
 
 namespace WebApi.Servicios
