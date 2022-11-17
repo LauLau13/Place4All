@@ -7,7 +7,7 @@ namespace WebApi.Servicios
     {
         private readonly IMongoCollection<Direccion> _direcciones;
         
-        public DireccionServicio(IDireccionesDataBaseSettings settings)
+        public DireccionServicio(IDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DataBaseName);
