@@ -13,7 +13,7 @@ namespace WebApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        // Este metodo es llamado por el runtime. Usar este método para añadir servicios al contenedor.
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<DatabaseSettings>(
@@ -33,8 +33,8 @@ namespace WebApi
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
             });
         }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        // Este metido es llamado por el runtime. Usa este método para configurat el HTTP request pipeline. 
+        
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
