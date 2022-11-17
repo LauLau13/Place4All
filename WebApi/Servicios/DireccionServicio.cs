@@ -10,9 +10,9 @@ namespace WebApi.Servicios
         public DireccionServicio(IDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
-            var database = client.GetDatabase(settings.DataBaseName);
+            var database = client.GetDatabase(settings.DatabaseName);
 
-            _direcciones = database.GetCollection<Direccion>(settings.DireccionesCollectionName);
+            _direcciones = database.GetCollection<Direccion>("Direccion");
         }
 
         public List<Direccion> Get() => _direcciones.Find(direccion => true).ToList();
@@ -27,7 +27,7 @@ namespace WebApi.Servicios
 
         public void Update(string id, Direccion direccionIn) => _direcciones.ReplaceOne(direccion => direccion.Id == id, direccionIn);
 
-        public void Remove(Direccion direccionIn) => _direcciones.DeleteOne(direccion => direccion.Id == direccionIn.ID);
+        public void Remove(Direccion direccionIn) => _direcciones.DeleteOne(direccion => direccion.Id == direccionIn.Id);
 
 
     }
