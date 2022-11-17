@@ -17,6 +17,20 @@ namespace WebApi.Servicios
 
         public List<Direccion> Get() => _direcciones.Find(direccion => true).ToList();
 
-        public Direccion Get(int id) => _direcciones.Find(direccion => direccion.ID == id);
+        public Direccion Get(int id) => _direcciones.Find(direccion => direccion.ID == ID).FirstOrDefault();
+
+        public Direccion Create(direccion)
+        {
+            _direcciones.InsertOne(direccion);
+            return direccion;
+        }
+
+        public void Update(string id, Direccion updatedDireccion) => _direcciones.ReplaceOne(direccion => direccion.ID == ID, updatedDireccion);
+
+        public void Delete(Direccion direccionForDeletion) => _direcciones.DeleteOne(direccion => direccion.ID == direccionForDeletion.ID);
+
+        public void Delete(string id) => _direcciones.DeleteOne(direccion => direccion.ID == ID);
+
+
     }
 }
