@@ -1,4 +1,5 @@
-﻿using WebApi.Modelos;
+﻿using MongoDB.Bson;
+using WebApi.Modelos;
 using MongoDB.Driver;
 
 namespace WebApi.Servicios
@@ -21,11 +22,12 @@ namespace WebApi.Servicios
 
         public Direccion Create(Direccion direccion)
         {
+            direccion.Id ??= new BsonObjectId(ObjectId.GenerateNewId()).ToString();
             _direcciones.InsertOne(direccion);
             return direccion;
         }
 
-        public void Update(string id, Direccion direccionIn) => _direcciones.ReplaceOne(direccion => direccion.Id == id, direccionIn);
+        public void Update(string id, Direccion direccionIn) => _direcciones.ReplaceOne(Builders<Direccion>.Filter.Eq(s => s.Id, id), direccionIn);
 
         public void Remove(Direccion direccionIn) => _direcciones.DeleteOne(direccion => direccion.Id == direccionIn.Id);
 
