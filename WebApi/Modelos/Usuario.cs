@@ -5,7 +5,7 @@ namespace WebApi.Modelos
     public class Usuario
     {
         [Required]
-        private string ID { get; set; }
+        private string? Id { get; set; }
         private string Nombre { get; set; } = "";
         private string Apellido { get; set; } = "";
         private string Genero { get; set; } = "";
