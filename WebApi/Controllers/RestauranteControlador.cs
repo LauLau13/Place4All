@@ -12,8 +12,8 @@ namespace WebApi.Controllers
     public class RestauranteControlador : ControllerBase
     {
 
-        private readonly ServicioRestaurante _servicioRestaurante;
-        public RestauranteControlador(ServicioRestaurante servicioRestaurante)
+        private readonly RestauranteServicio _servicioRestaurante;
+        public RestauranteControlador(RestauranteServicio servicioRestaurante)
         {
             _servicioRestaurante = servicioRestaurante;
         }
