@@ -1,7 +1,5 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace WebApi.Modelos
 {
@@ -9,7 +7,7 @@ namespace WebApi.Modelos
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
         private string Calle { get; set; } = "";
         private int Numero { get; set; }
         private string Ciudad { get; set; } = "";

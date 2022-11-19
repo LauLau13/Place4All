@@ -1,4 +1,5 @@
-﻿using WebApi.Modelos;
+﻿using MongoDB.Bson;
+using WebApi.Modelos;
 using MongoDB.Driver;
 
 namespace WebApi.Servicios
@@ -21,6 +22,7 @@ namespace WebApi.Servicios
 
         public Direccion Create(Direccion direccion)
         {
+            direccion.Id ??= BsonObjectId.GenerateNewId().ToString();
             _direcciones.InsertOne(direccion);
             return direccion;
         }
