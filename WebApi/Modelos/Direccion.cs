@@ -8,10 +8,10 @@ namespace WebApi.Modelos
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
-        private string Calle { get; set; } = "";
-        private int Numero { get; set; }
-        private string Ciudad { get; set; } = "";
-        private string CP { get; set; } = "";
-        private string Provincia { get; set; } = "";
+        public string Calle { get; set; } = "";
+        public int Numero { get; set; }
+        public string Ciudad { get; set; } = "";
+        public string CP { get; set; } = "";
+        public string Provincia { get; set; } = "";
     }
 }
