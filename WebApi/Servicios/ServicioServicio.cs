@@ -1,3 +1,5 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
 using WebApi.Modelos;
 
@@ -21,12 +23,15 @@ namespace WebApi.Servicios
 
     public Servicio Create(Servicio servicio)
     {
+        servicio.Id ??= BsonObjectId.GenerateNewId().ToString();
         _servicios.InsertOne(servicio);
         return servicio;
     }
 
-    public void Update(string id, Servicio servicioIn) =>
-        _servicios.ReplaceOne(servicio => servicio.Id == id, servicioIn);
+    public void Update(string id, Servicio servicioIn)
+    {
+        _servicios.ReplaceOne(Builders<Servicio>.Filter.Eq(s => s.Id, id), servicioIn);
+    }
 
     public void Remove(Servicio servicioIn) =>
         _servicios.DeleteOne(servicio => servicio.Id == servicioIn.Id);
