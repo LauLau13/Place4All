@@ -23,7 +23,7 @@ namespace WebApi.Controllers
 
         //Se pasa por la URL un id que tiene que tener 24 caracteres ya que el BSON.Id tiene ese formato.
         [HttpGet("{id:length(24)}")]
-        public ActionResult<Restaurante> Get(int id)
+        public ActionResult<Restaurante> Get(string id)
         {
             var restaurante = _servicioRestaurante.Get(id);
 
@@ -71,7 +71,7 @@ namespace WebApi.Controllers
                 return NotFound();
             }
 
-            _servicioRestaurante.Remove(restaurante);
+            _servicioRestaurante.Delete(restaurante);
 
             return NoContent();
         }
