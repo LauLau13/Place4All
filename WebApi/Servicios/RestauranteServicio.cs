@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
-using WebApi.Modelos;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Driver;
+using WebApi.Modelos;
 
 namespace WebApi.Servicios
 {
@@ -12,7 +13,6 @@ namespace WebApi.Servicios
         {
             var client = new MongoClient(settings.ConnectionString);
             var database = client.GetDatabase(settings.DatabaseName);
-
             _restaurantes = database.GetCollection<Restaurante>("Restaurante");
         }
 
@@ -21,10 +21,11 @@ namespace WebApi.Servicios
         public Restaurante Get(string id) =>
             _restaurantes.Find(restaurante => restaurante.Id == id).FirstOrDefault();
 
-        public Restaurante Add(Restaurante restaurante)
+        public Restaurante Create(Restaurante restaurante)
         {
+            //Comprobación, si el restaurante nuevo no contiene un Id (al crearse el el constructor nulo), entonces se genera uno nuevo y se le asigna
+            restaurante.Id ??= BsonObjectId.GenerateNewId().ToString();
             _restaurantes.InsertOne(restaurante);
-
             return restaurante;
         }
 
