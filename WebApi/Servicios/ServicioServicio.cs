@@ -23,6 +23,7 @@ namespace WebApi.Servicios
 
     public Servicio Create(Servicio servicio)
     {
+        //Preguntar donde debería ir esta lógica
         servicio.Id ??= BsonObjectId.GenerateNewId().ToString();
         _servicios.InsertOne(servicio);
         return servicio;

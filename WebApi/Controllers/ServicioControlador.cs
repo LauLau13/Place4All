@@ -21,6 +21,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public ActionResult<List<Servicio>> Get() => _servicioServicio.Get();
 
+        //Se pasa por la URL un id que tiene que tener 24 caracteres ya que el BSON.Id tiene ese formato.
         [HttpGet("{id:length(24)}")]
         public ActionResult<Servicio> Get(string id)
         {
@@ -37,10 +38,9 @@ namespace WebApi.Controllers
         [HttpPost]
         public ActionResult<Servicio> Create(Servicio servicio)
         {
-            servicio.Id ??= BsonObjectId.GenerateNewId().ToString();
-            _servicioServicio.Create(servicio);
+            var servicioCreado =  _servicioServicio.Create(servicio);
 
-            return CreatedAtRoute("", new { id = servicio.Id }, servicio);
+            return CreatedAtRoute("", new { id = servicio.Id }, servicioCreado);
         }
 
         [HttpPut( "{id:length(24)}")]
@@ -54,7 +54,7 @@ namespace WebApi.Controllers
             }
 
             servicioInf.Id = servicio.Id;
-            _servicioServicio.Update(id, servicio);
+            _servicioServicio.Update(id, servicioInf);
 
             return NoContent();
         }
