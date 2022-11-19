@@ -29,8 +29,7 @@ namespace WebApi.Servicios
             return restaurante;
         }
 
-        public void Update(string id, Restaurante restaurante) =>
-            _restaurantes.ReplaceOne(r => r.Id == id, restaurante);
+        public void Update(string id, Restaurante restaurante) => _restaurantes.ReplaceOne(Builders<Restaurante>.Filter.Eq(r => r.Id, id), restaurante);
 
         public void Delete(Restaurante restaurante) =>
             _restaurantes.DeleteOne(r => r.Id == restaurante.Id);
