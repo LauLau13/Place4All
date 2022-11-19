@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using WebApi.Modelos;
+using WebApi.Servicios;
 
 namespace WebApi
 {
@@ -24,13 +25,18 @@ namespace WebApi
             services.Configure<DatabaseSettings>(
                 Configuration.GetSection(nameof(DatabaseSettings))
             );
+            
+            services.AddMvc(options =>
+            {
+                options.SuppressAsyncSuffixInActionNames = false;
+            });
 
             services.AddSingleton<IDatabaseSettings>(
                 sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value
             );
 
             //Añadir cada servicio de la siguiente manera: services.AddSingleton<{Nombre del servicio}>();
-
+            services.AddSingleton<ServicioServicio>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
