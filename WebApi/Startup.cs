@@ -1,8 +1,3 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using WebApi.Modelos;
@@ -16,7 +11,6 @@ namespace WebApi
         {
             Configuration = configuration;
         }
-
         public IConfiguration Configuration { get; }
 
         // Este metodo es llamado por el runtime. Usar este método para añadir servicios al contenedor.
@@ -25,7 +19,7 @@ namespace WebApi
             services.Configure<DatabaseSettings>(
                 Configuration.GetSection(nameof(DatabaseSettings))
             );
-            
+
             services.AddMvc(options =>
             {
                 options.SuppressAsyncSuffixInActionNames = false;
@@ -55,12 +49,15 @@ namespace WebApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
             }
+            
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            
             app.UseAuthorization();
+            
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {
