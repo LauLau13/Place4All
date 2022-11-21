@@ -8,6 +8,7 @@ namespace WebApi.Servicios
     {
         //Damos a la lista Usuarios el nombre de _usuarios
         private readonly IMongoCollection<Usuario> _usuarios;
+        private readonly DireccionServicio _direccionServicio;
 
         //Conectamos la base de datos con usuarios
         public UsuarioServicio(IDatabaseSettings settings)
@@ -37,7 +38,5 @@ namespace WebApi.Servicios
 
         //Borramos un usuario de la lista comparando el usuario con su IP¿
         public void Remove(Usuario usuarioIn) => _usuarios.DeleteOne(usuario => usuario.Id == usuarioIn.Id);
-
-
     }
 }
