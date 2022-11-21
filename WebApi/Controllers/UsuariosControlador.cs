@@ -9,10 +9,12 @@ namespace WebApi.Controllers
     public class UsuarioControlador : ControllerBase
     {
         private readonly UsuarioServicio _usuarioServicio;
+        private readonly DireccionServicio _direccionServicio;
 
-        public UsuarioControlador(UsuarioServicio usuarioServicio)
+        public UsuarioControlador(UsuarioServicio usuarioServicio, DireccionServicio direccionServicio)
         {
             _usuarioServicio = usuarioServicio;
+            _direccionServicio = direccionServicio;
         }
 
         [HttpGet]
@@ -24,7 +26,8 @@ namespace WebApi.Controllers
         [HttpPost]
         public ActionResult<Usuario> Create(Usuario usuario)
         {
-            var usuarioCreada = _usuarioServicio.Create(usuario);
+            var usuarioD = HasDireccion(usuario);
+            var usuarioCreada = _usuarioServicio.Create(usuarioD);
 
             return CreatedAtRoute("", new { id = usuario.Id }, usuarioCreada);
         }
@@ -55,10 +58,36 @@ namespace WebApi.Controllers
             {
                 return NotFound();
             }
-
+            DeleteDireccion(usuario);
             _usuarioServicio.Remove(usuario);
 
             return NoContent();
+        }
+        
+        private Usuario HasDireccion(Usuario usuario)
+        {
+            
+            if (usuario.Direccion.Id == null)
+            {
+                var direccionD = _direccionServicio.Create(usuario.Direccion);
+                usuario.Direccion = direccionD;
+                return usuario;
+            }
+
+            var direccion = _direccionServicio.Get(usuario.Direccion.Id);
+            if (direccion == null)
+            {
+                direccion = _direccionServicio.Create(usuario.Direccion);
+                usuario.Direccion = direccion;
+                return usuario;
+            }
+
+            return usuario;
+        }
+
+        private void DeleteDireccion(Usuario usuario)
+        {
+            _direccionServicio.Remove(usuario.Direccion);
         }
     }
 }

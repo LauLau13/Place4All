@@ -7,7 +7,7 @@ namespace WebApi.Modelos
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public string Nombre { get; set; } = "";
         public string Apellido { get; set; } = "";
         public string Genero { get; set; } = "";
@@ -15,8 +15,8 @@ namespace WebApi.Modelos
         public Direccion Direccion { get; set; }
         public bool TieneDiscapacidad { get; set; } = false;
         public decimal? GradoDiscapacidad { get; set; }
-        public string email { get; set; } = "";
-        public string password { get; set; } = "";
+        public string Email { get; set; } = "";
+        public string Password { get; set; } = "";
 
     }
 }
