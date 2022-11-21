@@ -8,9 +8,9 @@ namespace WebApi.Controllers
     [Route("Usuario")]
     public class UsuarioControlador : ControllerBase
     {
-        private readonly DireccionServicio _usuarioServicio;
+        private readonly UsuarioServicio _usuarioServicio;
 
-        public UsuarioControlador(DireccionServicio usuarioServicio)
+        public UsuarioControlador(UsuarioServicio usuarioServicio)
         {
             _usuarioServicio = usuarioServicio;
         }
