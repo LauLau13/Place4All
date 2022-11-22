@@ -1,4 +1,7 @@
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using WebApi.Modelos;
 using WebApi.Servicios;
@@ -51,13 +54,12 @@ namespace WebApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
             }
             
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
             
             app.UseAuthorization();
-            
+
             app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
