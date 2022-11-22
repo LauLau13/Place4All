@@ -7,8 +7,12 @@ namespace WebApi.Servicios
 {
     public class RestauranteServicio
     {
+        //Damos a la lista de Restaurantes el nombre de _restaurantes
         private readonly IMongoCollection<Restaurante> _restaurantes;
+        //Creamos la variable DirecciónServicio del restaurante como _direccionServicio
+        private readonly DireccionServicio _direccionServicio;
 
+        //Conexión de la base de datos con los objetos restaurantes
         public RestauranteServicio(IDatabaseSettings settings)
         {
             var client = new MongoClient(settings.ConnectionString);
@@ -16,86 +20,29 @@ namespace WebApi.Servicios
             _restaurantes = database.GetCollection<Restaurante>("Restaurante");
         }
 
+        //Método que recoge todos los objetos restaurante de la base de datos y los devuelve en forma de lista
         public List<Restaurante> Get() => _restaurantes.Find(restaurante => true).ToList();
 
-        public Restaurante Get(string id) =>
-            _restaurantes.Find(restaurante => restaurante.Id == id).FirstOrDefault();
+        //Método que busca en la base de datos y devuelve el objeto restaurante con la id introducida por parámetro
+        public Restaurante Get(string id) => _restaurantes.Find(restaurante => restaurante.Id == id).FirstOrDefault();
 
+        //Método que crea un objeto restaurante
         public Restaurante Create(Restaurante restaurante)
         {
-            //Comprobación, si el restaurante nuevo no contiene un Id (al crearse el el constructor nulo), entonces se genera uno nuevo y se le asigna
-            restaurante.Id ??= BsonObjectId.GenerateNewId().ToString();
+            //Comprobación, si el restaurante nuevo no contiene un Id (al crearse en el constructor nulo), entonces se genera uno nuevo y se le asigna
+            restaurante.Id ??= new BsonObjectId(ObjectId.GenerateNewId()).ToString();
+            //Inserta un objeto restaurante en el listado de todos los restaurantes de la bd
             _restaurantes.InsertOne(restaurante);
-            var restauranteWDireccion = HasDireccion(restaurante);
-            var restauranteWServicioDireccion = HasServices(restauranteWDireccion);
-            return restauranteWServicioDireccion;
-            //Llamar a los métodos de comprobación de dirección y servicios
+            //Devuelve el restaurante recién creado
+            return restaurante;
         }
 
+        //Actualizamos la lista de restaurantes al insertar nuevo restaurante
         public void Update(string id, Restaurante restaurante) => _restaurantes.ReplaceOne(Builders<Restaurante>.Filter.Eq(r => r.Id, id), restaurante);
 
-        public void Delete(Restaurante restaurante) =>
-            _restaurantes.DeleteOne(r => r.Id == restaurante.Id);
+        //Borramos el restaurante pasado como parámetro de entrada de la lista de restaurantes de la bd identificándolo mediante su Id
+        public void Delete(Restaurante restauranteIn) => _restaurantes.DeleteOne(restaurante => restaurante.Id == restauranteIn.Id);
 
-
-        private Restaurante HasDireccion(Restaurante restaurante)
-        {
-            //En el caso de que no esté creada una direccion
-            var direccion = restaurante.Direccion;
-            if (direccion.Id == null)
-            {
-                var newDireccion = _direccionServicio.Create(direccion);
-                restaurante.Direccion = newDireccion;
-                return restaurante;
-            }
-            else
-            {
-                //En el caso de que la dirección creada no tenga Id
-                var direccionId = _direccionServicio.Get(direccion.Id);
-                if (direccionId == null)
-                {
-                    var newDireccion = _direccionServicio.Create(direccion);
-                    restaurante.Direccion = newDireccion;
-                    return restaurante;
-                }
-                else
-                {
-                    return restaurante;
-                }
-            }
-
-            
-            
-        }
-
-        private Restaurante HasServices(Restaurante restaurante)
-        {
-            //En el caso de que no esté creada la lista de servicios
-            var servicio = restaurante.Servicio;
-            if (servicio.Id == null)
-            {
-                var newDireccion = _servicioServicio.Create(servicio);
-                restaurante.Servicio = newServicio;
-                return restaurante;
-            }
-            else
-            {
-                //En el caso de que la dirección creada no tenga Id
-                var servicioId = _servicioServicio.Get(servicio.Id);
-                if (servicioId == null)
-                {
-                    var newServicio = _servicioServicio.Create(servicio);
-                    restaurante.Servicio = newServicio;
-                    return restaurante;
-                }
-                else
-                {
-                    return restaurante;
-                }
-            }
-
-            
-        }
 
     }
 }
