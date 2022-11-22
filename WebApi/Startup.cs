@@ -38,6 +38,8 @@ namespace WebApi
             //Añadir cada servicio de la siguiente manera: services.AddSingleton<{Nombre del servicio}>();
             services.AddSingleton<ServicioServicio>();
             services.AddSingleton<DireccionServicio>();
+            services.AddSingleton<UsuarioServicio>();
+
             services.AddSingleton<RestauranteServicio>();
 
             services.AddControllers();
