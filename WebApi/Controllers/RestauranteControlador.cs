@@ -13,9 +13,12 @@ namespace WebApi.Controllers
     {
 
         private readonly RestauranteServicio _servicioRestaurante;
-        public RestauranteControlador(RestauranteServicio servicioRestaurante)
+        private readonly DireccionServicio _direccionServicio;
+
+        public RestauranteControlador(RestauranteServicio servicioRestaurante, DireccionServicio direccionServicio)
         {
             _servicioRestaurante = servicioRestaurante;
+            _direccionServicio = direccionServicio;
         }
 
         [HttpGet]
@@ -38,6 +41,7 @@ namespace WebApi.Controllers
         [HttpPost]
         public ActionResult<Restaurante> Create(Restaurante restaurante)
         {
+            var restauranteD = HasDireccion(restaurante);
             var restauranteCreado = _servicioRestaurante.Create(restaurante);
 
             return CreatedAtRoute("", new { id = restaurante.Id }, restauranteCreado);
@@ -59,7 +63,6 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        // DELETE api/<RestauranteControlador>/5
         [HttpDelete("{id:length(24)}")]
         public IActionResult Delete(string id)
         {
@@ -70,10 +73,35 @@ namespace WebApi.Controllers
             {
                 return NotFound();
             }
-
+            DeleteDireccion(restaurante);
             _servicioRestaurante.Delete(restaurante);
 
             return NoContent();
+        }
+
+        private Restaurante HasDireccion (Restaurante restaurante)
+        {
+            if(restaurante.Direccion == null)
+            {
+                var DireccionD = _direccionServicio.Create(restaurante.Direccion);
+                restaurante.Direccion = DireccionD;
+                return restaurante;
+            }
+
+            var direccion = _direccionServicio.Get(restaurante.Direccion.Id);
+            if(direccion == null)
+            {
+                direccion = _direccionServicio.Create(restaurante.Direccion);
+                restaurante.Direccion = direccion;
+                return restaurante;
+            }
+
+            return restaurante;
+        }
+
+        private void DeleteDireccion (Restaurante restaurante)
+        {
+            _direccionServicio.Remove(restaurante.Direccion);
         }
     }
 }
