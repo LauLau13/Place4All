@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
 using WebApi.Modelos;
 using WebApi.Servicios;
 
@@ -42,7 +40,7 @@ namespace WebApi.Controllers
         public ActionResult<Restaurante> Create(Restaurante restaurante)
         {
             var restauranteD = HasDireccion(restaurante);
-            var restauranteCreado = _servicioRestaurante.Create(restaurante);
+            var restauranteCreado = _servicioRestaurante.Create(restauranteD);
 
             return CreatedAtRoute("", new { id = restaurante.Id }, restauranteCreado);
         }
@@ -81,7 +79,7 @@ namespace WebApi.Controllers
 
         private Restaurante HasDireccion (Restaurante restaurante)
         {
-            if(restaurante.Direccion == null)
+            if(restaurante.Direccion.Id == null)
             {
                 var DireccionD = _direccionServicio.Create(restaurante.Direccion);
                 restaurante.Direccion = DireccionD;
@@ -89,14 +87,12 @@ namespace WebApi.Controllers
             }
 
             var direccion = _direccionServicio.Get(restaurante.Direccion.Id);
-            if(direccion == null)
-            {
-                direccion = _direccionServicio.Create(restaurante.Direccion);
-                restaurante.Direccion = direccion;
-                return restaurante;
-            }
-
+            if (direccion != null) return restaurante;
+            
+            direccion = _direccionServicio.Create(restaurante.Direccion);
+            restaurante.Direccion = direccion;
             return restaurante;
+
         }
 
         private void DeleteDireccion (Restaurante restaurante)
