@@ -17,7 +17,7 @@ namespace WebApi.Modelos
 
     }
 
-    public interface IBuscaCiudad
+    public class IBuscaCiudad
     {
         public string Ciudad { get; set; }
     }

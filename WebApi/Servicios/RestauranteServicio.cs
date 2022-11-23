@@ -42,6 +42,7 @@ namespace WebApi.Servicios
         //Borramos el restaurante pasado como parámetro de entrada de la lista de restaurantes de la bd identificándolo mediante su Id
         public void Delete(Restaurante restauranteIn) => _restaurantes.DeleteOne(restaurante => restaurante.Id == restauranteIn.Id);
 
+        public List<Restaurante> Search(IBuscaCiudad busqueda) => _restaurantes.Find(restaurante => restaurante.Direccion.Ciudad.ToLower() == busqueda.Ciudad.ToLower()).ToList();
 
     }
 }
