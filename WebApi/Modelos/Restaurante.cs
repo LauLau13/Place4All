@@ -17,4 +17,9 @@ namespace WebApi.Modelos
         public List<Servicio> Servicio { get; set; } = new List<Servicio>();
 
     }
+
+    public interface IBuscaCiudad
+    {
+        public string Ciudad { get; set; }
+    }
 }

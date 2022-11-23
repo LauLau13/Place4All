@@ -33,5 +33,7 @@ namespace WebApi.Servicios
 
         public void Delete(Restaurante restaurante) =>
             _restaurantes.DeleteOne(r => r.Id == restaurante.Id);
+
+        public List<Restaurante> Search(IBuscaCiudad busqueda) => _restaurantes.Find(restaurante => restaurante.Direccion.Ciudad == busqueda.Ciudad).ToList();
     }
 }
