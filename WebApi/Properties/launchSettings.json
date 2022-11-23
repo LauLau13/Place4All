@@ -1,21 +1,22 @@
 {
   "$schema": "https://json.schemastore.org/launchsettings.json",
   "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
+    "windowsAuthentication": false, //no requiere autentificación para entrar
+    "anonymousAuthentication": true, //acceso anónimo
     "iisExpress": {
-      "applicationUrl": "http://localhost:34964",
+      "applicationUrl": "http://localhost:34964", //localhost de lanzamiento del front de la aplicación
       "sslPort": 44352
     }
   },
+  //para ejecutar e back de la api mediante el swagger
   "profiles": {
     "WebApi": {
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "swagger",
-      "applicationUrl": "https://localhost:7157;http://localhost:5157",
+      "applicationUrl": "https://localhost:7157;http://localhost:5157", //localhost para acceder al swagger
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development" //Acceso desde el entorno de los desarrolladorea
       }
     },
     "IIS Express": {
@@ -26,6 +27,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    //para ejecutar el docker de la aplicación
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,

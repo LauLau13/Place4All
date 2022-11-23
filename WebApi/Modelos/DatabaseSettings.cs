@@ -1,5 +1,6 @@
 namespace WebApi.Modelos
 {
+    //Clase creada para la configuración de la base de datos
     public class DatabaseSettings : IDatabaseSettings
     {
         public string CollectionName { get; set; }
@@ -7,6 +8,7 @@ namespace WebApi.Modelos
         public string DatabaseName { get; set; }
     }
 
+    //Interfaz creada para la clase DatabaseSettings
     public interface IDatabaseSettings
     {
         string CollectionName { get; set; }
