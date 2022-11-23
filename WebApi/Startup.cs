@@ -40,6 +40,8 @@ namespace WebApi
             services.AddSingleton<DireccionServicio>();
             services.AddSingleton<UsuarioServicio>();
 
+            services.AddSingleton<RestauranteServicio>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
