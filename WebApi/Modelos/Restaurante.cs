@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
 namespace WebApi.Modelos
@@ -8,7 +7,7 @@ namespace WebApi.Modelos
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string Id { get; set; }
+        public string? Id { get; set; }
         public string Nombre { get; set; } = "";
         public Direccion Direccion { get; set; }
         public string Descripcion { get; set; } = "";
@@ -16,5 +15,10 @@ namespace WebApi.Modelos
         public string Imagen { get; set; } = "";
         public List<Servicio> Servicio { get; set; } = new List<Servicio>();
 
+    }
+
+    public class IBuscaCiudad
+    {
+        public string Ciudad { get; set; }
     }
 }
