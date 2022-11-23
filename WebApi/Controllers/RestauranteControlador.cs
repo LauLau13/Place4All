@@ -76,7 +76,10 @@ namespace WebApi.Controllers
 
             return NoContent();
         }
-
+        
+        [HttpPost("search")]
+        public ActionResult<List<Restaurante>> Search(IBuscaCiudad ciudad) => _servicioRestaurante.Search(ciudad);
+        
         private Restaurante HasDireccion (Restaurante restaurante)
         {
             if(restaurante.Direccion.Id == null)
