@@ -23,7 +23,7 @@ namespace WebApi.Controllers
             _direccionServicio = direccionServicio;
             _configuration = config;
         }
-        [Authorize]
+        
         [HttpGet]
         public ActionResult<List<Usuario>> Get() => _usuarioServicio.Get();
 
