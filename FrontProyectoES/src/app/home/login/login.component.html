@@ -1,21 +1,23 @@
 <div>
-  <div class="Username">
-    <p>Icon</p>
-    <label>Username</label>
+  <div class="InputText" id="Username">
+    <p class="InputTextIcon">UI</p>
+    <input type="text" id="username" value="Username" class="InputTextText" /><br />
   </div>
-  <div class="Password">
-    <p>Icon</p>
-    <label>Password</label>
+  <div class="InputText" id="Password">
+    <p class="InputTextIcon">PI</p>
+    <input type="text" id="password" value="Password" class="InputTextText" /><br />
+    <p class="InputTextIcon" id="InputTextEyeIcon">EI</p>
   </div>
   <div class="PasswordHelp">
-    <div class="RememberCheckText">
-      <label>Checkbox</label>
-      <p>Remember me</p>
+    <div class="RememberCheck">
+      <input type="checkbox" id="remember" />
+      <label for="remember">Remember me</label>
     </div>
     <div class="ChangePassword">
       <a>Forgot Password?</a>
     </div>
   </div>
-  <button>Login</button>
+  <label for="loginbtn">Login</label>
+  <input type="button" name="loginbtn" />
   <button>Register</button>
 </div>
