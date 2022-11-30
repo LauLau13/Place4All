@@ -1,0 +1,17 @@
+{
+  "ast": null,
+  "code": "import { AsyncScheduler } from './AsyncScheduler';\nexport class QueueScheduler extends AsyncScheduler {}",
+  "map": {
+    "version": 3,
+    "names": ["AsyncScheduler", "QueueScheduler"],
+    "sources": [
+      "/Users/alexanderaguirre/Developer/2DAW/EntornoServidor/Projects/ESProject/proyectoEntornoServidor1EV/FrontProyectoES/node_modules/rxjs/dist/esm/internal/scheduler/QueueScheduler.js"
+    ],
+    "sourcesContent": [
+      "import { AsyncScheduler } from './AsyncScheduler';\nexport class QueueScheduler extends AsyncScheduler {\n}\n"
+    ],
+    "mappings": "AAAA,SAASA,cAAc,QAAQ,kBAAkB;AACjD,OAAO,MAAMC,cAAc,SAASD,cAAc,CAAC"
+  },
+  "metadata": {},
+  "sourceType": "module"
+}
