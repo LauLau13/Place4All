@@ -1,6 +1,12 @@
-<div class="contenedor mx-auto w-50 h-auto bg-light justify-content-center border border-outline-primary">
+<div class="bg-light justify-content-center d-flex flex-column align-items-center">
+  <p *ngIf="error" class="pt-5 px-5">
+    <ngb-alert type="danger" [dismissible]="false">
+      <strong>Los datos introducidos son incorrectos.</strong> <br />
+      Por favor vuelve a intentarlo.
+    </ngb-alert>
+  </p>
   <h3 class="justify-content-center d-flex align-items-center mt-3 mb-3">Login</h3>
-  <div class="ms-5 bg-light w-auto">
+  <div class="bg-light w-auto">
     <svg
       class="m-2"
       width="24px"
@@ -17,9 +23,9 @@
         stroke-linecap="round"
         stroke-linejoin="round"></path>
     </svg>
-    <input class="p-2 w-75" type="text" placeholder="username" value="Username" />
+    <input class="p-2 w-75" type="text" placeholder="username" />
   </div>
-  <div class="ms-5 bg-light w-auto mt-2">
+  <div class="bg-light w-auto mt-2">
     <svg
       class="m-2"
       width="24px"
@@ -36,7 +42,7 @@
         stroke-linecap="round"
         stroke-linejoin="round"></path>
     </svg>
-    <input class="p-2 w-75" type="text" placeholder="password" value="Password" />
+    <input class="p-2 w-75" type="text" placeholder="password" />
   </div>
   <div class="btRecord ms-4 d-flex justify-content-between">
     <div class="m-4">
@@ -48,11 +54,9 @@
     </div>
   </div>
   <div class="botonesInferiores mx-auto w-75 align-items-center column align-self-center mb-5">
-    <div class="d-flex justify-content-center column row mb-2">
-      <button>Login</button>
-    </div>
-    <div class="d-flex justify-content-center column row mt-2">
-      <button>Register</button>
+    <div class="d-grid gap-2">
+      <button class="btn btn-primary" type="button">Button</button>
+      <button class="btn btn-secondary" type="button">Button</button>
     </div>
   </div>
 </div>
@@ -60,10 +64,10 @@
 <!--Clases Laura-->
 <!-- <div>
   <div class="InputText d-flex align-self-center align-items-center bg-light" id="Username">
-    <p class="InputTextIcon ">UI</p> 
+    <p class="InputTextIcon ">UI</p>
     <div class="TextUser d-flex align-items-center text-primary ">
       <input type="text" id="username" value="Username" class="InputTextText" />
-    </div> 
+    </div>
   </div>
   <div class="InputText" id="Password">
     <p class="InputTextIcon">PI</p>
