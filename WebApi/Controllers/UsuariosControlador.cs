@@ -98,11 +98,11 @@ namespace WebApi.Controllers
         
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Post(string email, string password)
+        public async Task<IActionResult> Post(Login login)
         {
-            if (email != null && password != null)
+            if (login.Email != null && login.Password != null)
             {
-                var user = await GetUser(email, password);
+                var user = await GetUser(login.Email, login.Password);
 
                 if (user != null)
                 {
