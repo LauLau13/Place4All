@@ -1,61 +1,127 @@
-<div class="container mx-auto mt-5 w-25 bg-light pt-3 pb-5 justify-content-center border border-outline-primary">
-  <h3 class="mx-auto d-flex p-1 justify-content-center pb-3">Register</h3>
-  <div class="m-3 d-flex justify-content-center">
-    <input type="text" placeholder="Firts Name" class="" />
-  </div>
-  <div class="m-3 d-flex justify-content-center">
-    <input type="text" placeholder="Last Name" class="" />
-  </div>
-  <div class="m-3 d-flex justify-content-center">
-    <input type="text" placeholder="User Name" class="" />
-  </div>
-  <div class="m-3 d-flex justify-content-center">
-    <input type="text" placeholder="Gender" class="" />
-  </div>
-  <div class="m-3 d-flex justify-content-center">
-    <input type="number" placeholder="Edad" class="" />
-  </div>
-  <div class="m-3 d-flex justify-content-center">
-    <input type="text" placeholder="Direccion" class="" />
-  </div>
-  <div class="m-3 ms-5 mx-auto w-25 h-auto container w-auto pt-1 pb-2 justify-content-center">
-    <div>Do you have a disability?</div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-      <label class="form-check-label" for="flexRadioDefault1"> Yes. </label>
+<div class="col-12" [formGroup]="registerGroup">
+  <div class="card card-registration card-registration-2">
+    <div class="card-body p-0">
+      <div class="row g-0">
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h3 class="fw-normal mb-5" style="color: #4835d4">General Infomation</h3>
+
+            <div class="row">
+              <div class="col-md-6 mb-4 pb-2">
+                <div class="form-outline form-floating">
+                  <input type="text" id="form3Examplev2" class="form-control form-control-lg floating-input" />
+                  <label class="form-label" for="form3Examplev2">First name</label>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4 pb-2">
+                <div class="form-outline form-floating">
+                  <input type="text" id="form3Examplev3" class="form-control form-control-lg floating-input" />
+                  <label class="form-label" for="form3Examplev3">Last name</label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="form-outline form-floating form-white">
+                <input type="text" id="form3Examplea9" class="form-control form-control-lg floating-input" />
+                <label class="form-label" for="form3Examplea9">Your Email</label>
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="form-outline form-floating form-white">
+                <input type="password" id="password" class="form-control form-control-lg floating-input" />
+                <label class="form-label" for="password">Password</label>
+              </div>
+            </div>
+            <div class="mb-4">
+              <div class="form-outline form-floating form-white">
+                <input type="password" id="confirmPassword" class="form-control form-control-lg floating-input" />
+                <label class="form-label" for="confirmPassword">Confirm your password</label>
+              </div>
+            </div>
+            <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+              <h6 class="mb-0 me-4">Gender:</h6>
+
+              <div class="form-check form-check-inline mb-0 me-4">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender" value="option1" />
+                <label class="form-check-label" for="femaleGender">Female</label>
+              </div>
+
+              <div class="form-check form-check-inline mb-0 me-4">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender" value="option2" />
+                <label class="form-check-label" for="maleGender">Male</label>
+              </div>
+
+              <div class="form-check form-check-inline mb-0">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender" value="option3" />
+                <label class="form-check-label" for="otherGender">Other</label>
+              </div>
+            </div>
+            <div class="mb-4 d-md-flex justify-content-start align-items-center py-2">
+              <h6 class="mb-0 me-4">Do you have a disability?</h6>
+              <div class="form-check form-check-inline mb-0 me-4">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Yes" value="Yes" />
+                <label for="Yes" class="form-check-label">Yes</label>
+              </div>
+              <div class="form-check form-check-inline mb-0 me-4">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="No" value="No" />
+                <label for="No" class="form-check-label">No</label>
+              </div>
+            </div>
+            <div class="mb-4" *ngIf="registerGroup.controls['']">
+              <select class="select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 bg-indigo">
+          <div class="p-5">
+            <h3 class="fw-normal mb-5 text-white">Address</h3>
+
+            <div class="mb-4 pb-2">
+              <div class="form-outline form-floating form-white">
+                <input type="text" id="form3Examplea2" class="form-control form-control-lg floating-input" />
+                <label class="form-label" for="form3Examplea2">Street</label>
+              </div>
+            </div>
+
+            <div class="mb-4 pb-2">
+              <div class="form-outline form-floating form-white">
+                <input type="text" id="form3Examplea3" class="form-control form-control-lg floating-input" />
+                <label class="form-label" for="form3Examplea3">Number</label>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-5 mb-4 pb-2">
+                <div class="form-outline form-floating form-white">
+                  <input type="text" id="form3Examplea4" class="form-control form-control-lg floating-input" />
+                  <label class="form-label" for="form3Examplea4">Zip Code</label>
+                </div>
+              </div>
+              <div class="col-md-7 mb-4 pb-2">
+                <div class="form-outline form-floating form-white">
+                  <input type="text" id="form3Examplea5" class="form-control form-control-lg floating-input" />
+                  <label class="form-label" for="form3Examplea5">City</label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-4 pb-2">
+              <div class="form-outline form-floating form-white">
+                <input type="text" id="form3Examplea6" class="form-control form-control-lg floating-input" />
+                <label class="form-label" for="form3Examplea6">Province</label>
+              </div>
+            </div>
+
+            <button type="button" class="btn btn-light btn-lg" data-mdb-ripple-color="dark">Register</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-      <label class="form-check-label" for="flexRadioDefault2"> No. </label>
-    </div>
-  </div>
-  <div class="m-3 ms-5 mx-auto container w-100 mx-auto pt-1 pb-2 justify-content-center">
-    <div>Grade of discapacity:</div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
-      <label class="form-check-label" for="flexRadioDefault1"> First grade. </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-      <label class="form-check-label" for="flexRadioDefault2"> Second grade. </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-      <label class="form-check-label" for="flexRadioDefault2"> Third grade. </label>
-    </div>
-    <div class="form-check">
-      <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
-      <label class="form-check-label" for="flexRadioDefault2"> Fourth grade. </label>
-    </div>
-  </div>
-  <div class="m-3 d-flex justify-content-center">
-    <input type="text" placeholder="E-mail" />
-  </div>
-  <div class="m-3 d-flex justify-content-center">
-    <input type="text" placeholder="Password" />
-  </div>
-  <div class="d-flex justify-content-center">
-    <button class="m-2 p-3">Cancel</button>
-    <button class="m-2 p-3">Register</button>
   </div>
 </div>
