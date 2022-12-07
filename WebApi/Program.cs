@@ -35,8 +35,8 @@ namespace WebApi
             builder.Services.AddSingleton<DireccionServicio>();
             builder.Services.AddSingleton<UsuarioServicio>();
             builder.Services.AddSingleton<RestauranteServicio>();
-
-            //Añade los controladores de los servicios
+            
+            //A�ade los controladores de los servicios
             builder.Services.AddControllers();
 
             //Añade un documento swagger para controlar la API
