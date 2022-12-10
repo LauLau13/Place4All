@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Login } from 'src/app/shared/Models/login.model';
 import { LoginService } from 'src/app/shared/services/LoginService/login.service';
+import { RegisterComponent } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { LoginService } from 'src/app/shared/services/LoginService/login.service
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  constructor(private loginService: LoginService) {}
+  constructor(private loginService: LoginService, private modalService: NgbModal) {}
   error = false;
   loginForm = new FormGroup({
     email: new FormControl(''),
@@ -29,5 +31,12 @@ export class LoginComponent implements OnInit {
     if (!res) {
       this.error = true;
     }
+  }
+  openRegister() {
+    this.modalService.dismissAll();
+    this.modalService.open(RegisterComponent, {
+      centered: true,
+      size: 'xl',
+    });
   }
 }

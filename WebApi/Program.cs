@@ -14,31 +14,32 @@ namespace WebApi
         {
             //CreateHostBuilder(args).Build().Run();//Eliminar
 
-            //Creaci髇 del contenedor de la aplicaci髇 llamado builder
+            //Creaci贸n del contenedor de la aplicaci贸n llamado builder
             var builder = WebApplication.CreateBuilder(args);
 
-            //Configuraci髇 de la base de datos en el contenedor builder
+            //Configuraci贸n de la base de datos en el contenedor builder
             builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
 
-            //Para evitar errores en la ejecuci髇 de la API
+            //Para evitar errores en la ejecuci贸n de la API
             builder.Services.AddMvc(options =>
             {
-                //M閠odo que cuando es true recorta el sufijo Async aplicado en los m閠odos
+                //M茅todo que cuando es true recorta el sufijo Async aplicado en los m茅todos
                 options.SuppressAsyncSuffixInActionNames = false;
             });
 
             //Permite el acceso de los servicios a la base de datos
             builder.Services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
-            //A馻dir cada servicio de la siguiente manera: services.AddSingleton<{Nombre del servicio}>();
+            //A帽adir cada servicio de la siguiente manera: services.AddSingleton<{Nombre del servicio}>();
             builder.Services.AddSingleton<ServicioServicio>();
             builder.Services.AddSingleton<DireccionServicio>();
             builder.Services.AddSingleton<UsuarioServicio>();
-
-            //A馻de los controladores de los servicios
+            builder.Services.AddSingleton<RestauranteServicio>();
+            
+            //A锟絘de los controladores de los servicios
             builder.Services.AddControllers();
 
-            //A馻de un documento swagger para controlar la API
+            //A帽ade un documento swagger para controlar la API
             builder.Services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
@@ -47,7 +48,7 @@ namespace WebApi
             //Tras realizar los pasos anteriores se ejecuta el builder
             var app = builder.Build();
             
-            //Configuraci髇 de las peticiones con HTTP
+            //Configuraci贸n de las peticiones con HTTP
             if (builder.Environment.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
