@@ -24,15 +24,14 @@ export class LoginComponent implements OnInit {
       email: this.loginForm.value.email!,
       password: this.loginForm.value.password!,
     };
-    console.log(login);
 
     let res: LoginResponse = await this.loginService.login(login);
-    debugger;
     if (!res) {
       this.error = true;
     }
     this.loginService.setToken(res.token);
     this.loginService.setUser(res.usuario);
+    this.modalService.dismissAll();
   }
   openRegister() {
     this.modalService.dismissAll();
