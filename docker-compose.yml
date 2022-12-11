@@ -1,0 +1,13 @@
+version: "1.0"
+services:
+  #Levantamos el back
+  webapi:
+    build: ./WebApi
+    ports:
+      - "7157:80"
+
+  #Levantamos el front
+  frontproyectoes:
+    build: ./FrontProyectoES
+    ports:
+      - "26087:80"
