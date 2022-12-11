@@ -12,11 +12,17 @@ namespace WebApi
     {
         public static void Main(string[] args)
         {
-            //CreateHostBuilder(args).Build().Run();//Eliminar
-
+            var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
             //Creación del contenedor de la aplicación llamado builder
             var builder = WebApplication.CreateBuilder(args);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
+                {
+                    policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
             //Configuración de la base de datos en el contenedor builder
             builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
 
@@ -60,6 +66,8 @@ namespace WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseAuthorization();
 
