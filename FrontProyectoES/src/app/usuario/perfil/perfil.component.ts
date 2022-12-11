@@ -24,4 +24,7 @@ export class PerfilComponent implements OnInit {
       this.reservas = res;
     });
   }
+  logOut() {
+    localStorage.clear();
+  }
 }
