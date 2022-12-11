@@ -1,20 +1,19 @@
 <div class="d-flex justify-content-between me-5 ms-5">
-  <div class="md-flex justify-content-start h2">Nombre del restaurante</div>
+  <div class="md-flex justify-content-start h2">{{ restaurante.nombre }}</div>
   <div class="d-flex justify-content-end">
     <button class="m-1 me-2 btn btn-secundary">editar</button>
-    <button class="m-1 btn btn-primary">reservar</button>
+    <button class="m-1 btn btn-primary" (click)="reservar()">reservar</button>
   </div>
 </div>
 <hr class="me-5 ms-5 border border-primary border-2" />
 <div class="w-100 h-100">
   <div class="d-flex w-auto ms-5 me-5 w-100 h-100">
-    <div class="border border-primary w-100 h-auto">imagen<a href=""></a></div>
+    <div class="border border-primary w-100 h-auto"><a href="{{ restaurante.imagen }}"></a></div>
     <div class="w-100 h-100">
       <div class="border border-dark p-3">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam quas eligendi ullam mollitia aut corporis ipsam delectus
-        voluptatibus dolorem placeat eveniet obcaecati provident ipsa quaerat ex nam, dignissimos reprehenderit architecto.
+        {{ restaurante.descripcion }}
       </div>
-      <div class="border border-dark p-3">Teléfono: 976 00 00 00</div>
+      <div class="border border-dark p-3">Teléfono: {{ restaurante.telefono }}</div>
     </div>
   </div>
   <!--servicios banner inferior-->
@@ -22,17 +21,8 @@
     <!--No se centran :/-->
     <div class="p-2 h4">Servicios</div>
     <div class="fila1">
-      <div class="row m-2 w-auto h-auto">
-        <div class="m-3 border border-success col p-2">Apto para personas de movilidad reducida</div>
-        <div class="m-3 border border-success col p-2">Apto para personas de movilidad reducida</div>
-        <div class="m-3 border border-success col p-2">Apto para personas de movilidad reducida</div>
-        <div class="m-3 border border-success col p-2">Apto para personas de movilidad reducida</div>
-      </div>
-      <div class="row m-2 w-auto h-auto">
-        <div class="m-3 border border-success col p-2">Apto para personas de movilidad reducida</div>
-        <div class="m-3 border border-success col p-2">Apto para personas de movilidad reducida</div>
-        <div class="m-3 border border-success col p-2">Apto para personas de movilidad reducida</div>
-        <div class="m-3 border border-success col p-2">Apto para personas de movilidad reducida</div>
+      <div class="row m-2 w-auto h-auto" *ngFor="let servicio of restaurante.servicio">
+        <div class="m-3 border border-success col p-2">{{ servicio.nombre }}</div>
       </div>
     </div>
   </div>
