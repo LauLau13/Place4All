@@ -1,6 +1,48 @@
-#Anterior: See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 #Actual: https://www.developerro.com/2022/04/27/dockerfile-net6-test/
 
+#A PARTIR DE AQU脥 BIEN, ESTO SE QUEDA
+#1a Parte
+#Imagen oficial de miscrosoft .Net 6 con SDK
+#directorio de trabajo donde se copia el codigo fuente
+#copia del codigo fuente
+#codigo para publicar la aplicacion en un directorio dentro del contenedor
+
+#2a Parte
+#Ejecuci贸n de la aplicaci贸n usando un dotnet run sin usar la imagen SDK
+#Creaci贸n de un directorio de trabajo nuevo y copia de los archivos binarios que se compilan en la imagen anterior
+#Ejecuci贸n de la aplicacon
+
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+WORKDIR /src
+COPY . .
+RUN dotnet publish "WebApi/WebApi.csproj" -c Release -o /app
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+COPY --from=build /app ./
+ENTRYPOINT ["dotnet", "WebApi.dll"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#BORRAR A PARTIR DE AQUI, ES EL DOCKERFILE PRO DEFECTO
+#Anterior: See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 #FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
 #WORKDIR /app
 #EXPOSE 80
@@ -21,9 +63,3 @@
 #WORKDIR /app
 #COPY --from=publish /app/publish .
 #ENTRYPOINT ["dotnet", "WebApi.dll"]
-
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build #Imagen oficial de miscrosoft .Net 6 con SDK
-WORKDIR /src #directorio de trabajo donde se copia el c骴igo fuente
-COPY .. #copia del c骴igo fuente
-RUN dotnet publish "ProyectoES/Program.cs" -c Release -o /app #c骴igo para publicar la aplicaci髇 en un directorio dentro del contenedor
-
