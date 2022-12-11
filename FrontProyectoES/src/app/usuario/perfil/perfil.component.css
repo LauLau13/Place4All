@@ -1,0 +1,13 @@
+.editable:disabled {
+  border: none;
+  background-color: white;
+}
+
+.content p {
+  font-weight: 800;
+}
+
+tr input {
+  border: none;
+  text-align: center;
+}
