@@ -3,8 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { DetalleComponent } from './detalle/detalle.component';
 
 const routes: Routes = [
-  {
+  /* {
     path: '',
+    component: DetalleComponent,
+  }, */
+  {
+    path: ':id',
     component: DetalleComponent,
   },
 ];
