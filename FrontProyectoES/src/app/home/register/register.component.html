@@ -1,125 +1,164 @@
-<div class="col-12" [formGroup]="registerGroup">
+<div class="col-12">
   <div class="card card-registration card-registration-2">
     <div class="card-body p-0">
       <div class="row g-0">
         <div class="col-lg-6">
-          <div class="p-5">
-            <h3 class="fw-normal mb-5" style="color: #4835d4">General Infomation</h3>
+          <form [formGroup]="registerGroup">
+            <div class="p-5">
+              <h3 class="fw-normal mb-5" style="color: #4835d4">General Infomation</h3>
 
-            <div class="row">
-              <div class="col-md-6 mb-4 pb-2">
-                <div class="form-outline form-floating">
-                  <input type="text" id="form3Examplev2" class="form-control form-control-lg floating-input" />
-                  <label class="form-label" for="form3Examplev2">First name</label>
+              <div class="row">
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline form-floating">
+                    <input
+                      formControlName="nombre"
+                      type="text"
+                      id="form3Examplev2"
+                      class="form-control form-control-lg floating-input" />
+                    <label class="form-label" for="form3Examplev2">Nombre</label>
+                  </div>
+                </div>
+                <div class="col-md-6 mb-4 pb-2">
+                  <div class="form-outline form-floating">
+                    <input
+                      formControlName="apellido"
+                      type="text"
+                      id="form3Examplev3"
+                      class="form-control form-control-lg floating-input" />
+                    <label class="form-label" for="form3Examplev3">Apellido</label>
+                  </div>
                 </div>
               </div>
-              <div class="col-md-6 mb-4 pb-2">
-                <div class="form-outline form-floating">
-                  <input type="text" id="form3Examplev3" class="form-control form-control-lg floating-input" />
-                  <label class="form-label" for="form3Examplev3">Last name</label>
+              <div class="mb-4">
+                <div class="form-outline form-floating form-white">
+                  <input formControlName="email" type="text" id="form3Examplea9" class="form-control form-control-lg floating-input" />
+                  <label class="form-label" for="form3Examplea9">Email</label>
                 </div>
               </div>
-            </div>
-            <div class="mb-4">
-              <div class="form-outline form-floating form-white">
-                <input type="text" id="form3Examplea9" class="form-control form-control-lg floating-input" />
-                <label class="form-label" for="form3Examplea9">Your Email</label>
+              <div class="mb-4">
+                <div class="form-outline form-floating form-white">
+                  <input
+                    formControlName="password"
+                    type="password"
+                    id="password"
+                    class="form-control form-control-lg floating-input" />
+                  <label class="form-label" for="password">Contraseña</label>
+                </div>
               </div>
-            </div>
-            <div class="mb-4">
-              <div class="form-outline form-floating form-white">
-                <input type="password" id="password" class="form-control form-control-lg floating-input" />
-                <label class="form-label" for="password">Password</label>
+              <div class="mb-4">
+                <div class="form-outline form-floating form-white">
+                  <input
+                    formControlName="confirmPassword"
+                    type="password"
+                    id="confirmPassword"
+                    class="form-control form-control-lg floating-input" />
+                  <label class="form-label" for="confirmPassword">Repite tu contraseña</label>
+                </div>
               </div>
-            </div>
-            <div class="mb-4">
-              <div class="form-outline form-floating form-white">
-                <input type="password" id="confirmPassword" class="form-control form-control-lg floating-input" />
-                <label class="form-label" for="confirmPassword">Confirm your password</label>
+              <div class="mb-4">
+                <div class="form-outline form-floating form-white">
+                  <input formControlName="edad" type="number" id="age" class="form-control form-control floating-input" />
+                  <label class="form-label" for="age">Cuál es su edad?</label>
+                </div>
               </div>
-            </div>
-            <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
-              <h6 class="mb-0 me-4">Gender:</h6>
+              <div class="d-md-flex justify-content-start align-items-center mb-4 py-2">
+                <h6 class="mb-0 me-4">Género:</h6>
 
-              <div class="form-check form-check-inline mb-0 me-4">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="femaleGender" value="option1" />
-                <label class="form-check-label" for="femaleGender">Female</label>
-              </div>
+                <div class="form-check form-check-inline mb-0 me-4">
+                  <input formControlName="genero" class="form-check-input" type="radio" id="femaleGender" value="femenino" />
+                  <label class="form-check-label" for="femaleGender">Femenino</label>
+                </div>
 
-              <div class="form-check form-check-inline mb-0 me-4">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="maleGender" value="option2" />
-                <label class="form-check-label" for="maleGender">Male</label>
-              </div>
+                <div class="form-check form-check-inline mb-0 me-4">
+                  <input formControlName="genero" class="form-check-input" type="radio" id="maleGender" value="masculino" />
+                  <label class="form-check-label" for="maleGender">Masculino</label>
+                </div>
 
-              <div class="form-check form-check-inline mb-0">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="otherGender" value="option3" />
-                <label class="form-check-label" for="otherGender">Other</label>
+                <div class="form-check form-check-inline mb-0">
+                  <input formControlName="genero" class="form-check-input" type="radio" id="otherGender" value="otro" />
+                  <label class="form-check-label" for="otherGender">Otro</label>
+                </div>
+              </div>
+              <div class="mb-4 d-md-flex justify-content-start align-items-center py-2">
+                <h6 class="mb-0 me-4">¿Tiene una discapacidad?</h6>
+                <div class="form-check form-check-inline mb-0 me-4">
+                  <input
+                    formControlName="tieneDiscapacidad"
+                    type="checkbox"
+                    class="form-check-input"
+                    name="tieneDiscapacidad"
+                    id="tieneDiscapacidad" />
+                </div>
+              </div>
+              <div class="mb-4" *ngIf="registerGroup.controls['tieneDiscapacidad'].value == true">
+                <h6 class="mb-1 me-4">¿Cuál es su grado de discapacidad</h6>
+                <select formControlName="gradoDiscapacidad" class="form-select">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
               </div>
             </div>
-            <div class="mb-4 d-md-flex justify-content-start align-items-center py-2">
-              <h6 class="mb-0 me-4">Do you have a disability?</h6>
-              <div class="form-check form-check-inline mb-0 me-4">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Yes" value="Yes" />
-                <label for="Yes" class="form-check-label">Yes</label>
-              </div>
-              <div class="form-check form-check-inline mb-0 me-4">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="No" value="No" />
-                <label for="No" class="form-check-label">No</label>
-              </div>
-            </div>
-            <div class="mb-4" *ngIf="registerGroup.controls['']">
-              <select class="select">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-              </select>
-            </div>
-          </div>
+          </form>
         </div>
         <div class="col-lg-6 bg-indigo">
-          <div class="p-5">
-            <h3 class="fw-normal mb-5 text-white">Address</h3>
+          <form [formGroup]="addressGroup">
+            <div class="p-5">
+              <h3 class="fw-normal mb-5 text-white">Address</h3>
 
-            <div class="mb-4 pb-2">
-              <div class="form-outline form-floating form-white">
-                <input type="text" id="form3Examplea2" class="form-control form-control-lg floating-input" />
-                <label class="form-label" for="form3Examplea2">Street</label>
-              </div>
-            </div>
-
-            <div class="mb-4 pb-2">
-              <div class="form-outline form-floating form-white">
-                <input type="text" id="form3Examplea3" class="form-control form-control-lg floating-input" />
-                <label class="form-label" for="form3Examplea3">Number</label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-5 mb-4 pb-2">
+              <div class="mb-4 pb-2">
                 <div class="form-outline form-floating form-white">
-                  <input type="text" id="form3Examplea4" class="form-control form-control-lg floating-input" />
-                  <label class="form-label" for="form3Examplea4">Zip Code</label>
+                  <input formControlName="calle" type="text" id="form3Examplea2" class="form-control form-control-lg floating-input" />
+                  <label class="form-label" for="form3Examplea2">Calle</label>
                 </div>
               </div>
-              <div class="col-md-7 mb-4 pb-2">
+
+              <div class="mb-4 pb-2">
                 <div class="form-outline form-floating form-white">
-                  <input type="text" id="form3Examplea5" class="form-control form-control-lg floating-input" />
-                  <label class="form-label" for="form3Examplea5">City</label>
+                  <input
+                    formControlName="numero"
+                    type="text"
+                    id="form3Examplea3"
+                    class="form-control form-control-lg floating-input" />
+                  <label class="form-label" for="form3Examplea3">Número</label>
                 </div>
               </div>
-            </div>
 
-            <div class="mb-4 pb-2">
-              <div class="form-outline form-floating form-white">
-                <input type="text" id="form3Examplea6" class="form-control form-control-lg floating-input" />
-                <label class="form-label" for="form3Examplea6">Province</label>
+              <div class="row">
+                <div class="col-md-5 mb-4 pb-2">
+                  <div class="form-outline form-floating form-white">
+                    <input formControlName="cp" type="text" id="form3Examplea4" class="form-control form-control-lg floating-input" />
+                    <label class="form-label" for="form3Examplea4">Código Postal</label>
+                  </div>
+                </div>
+                <div class="col-md-7 mb-4 pb-2">
+                  <div class="form-outline form-floating form-white">
+                    <input
+                      formControlName="ciudad"
+                      type="text"
+                      id="form3Examplea5"
+                      class="form-control form-control-lg floating-input" />
+                    <label class="form-label" for="form3Examplea5">Ciudad</label>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            <button type="button" class="btn btn-light btn-lg" data-mdb-ripple-color="dark">Register</button>
-          </div>
+              <div class="mb-4 pb-2">
+                <div class="form-outline form-floating form-white">
+                  <input
+                    formControlName="provincia"
+                    type="text"
+                    id="form3Examplea6"
+                    class="form-control form-control-lg floating-input" />
+                  <label class="form-label" for="form3Examplea6">Provincia</label>
+                </div>
+              </div>
+
+              <button type="button" class="btn btn-light btn-lg" data-mdb-ripple-color="dark" (click)="onSubmit()">Register</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
