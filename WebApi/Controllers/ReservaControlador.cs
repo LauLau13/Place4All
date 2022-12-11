@@ -16,11 +16,11 @@ public class ReservaControlador : Controller
     [HttpGet]
     public async Task<List<Reserva>> Get() => await _reservaServicio.Get();
 
-    [HttpGet]
-    public async Task<List<Reserva>> GetUserReserva([FromBody] string usuarioId) =>
+    [HttpGet("usuario/{usuarioId}")]
+    public async Task<List<Reserva>> GetUserReserva(string usuarioId) =>
         await _reservaServicio.GetUserReserva(usuarioId);
 
-    [HttpGet]
+    [HttpGet("{id:length(24)}")]
     public async Task<Reserva> Get(string id) => await _reservaServicio.Get(id);
 
     [HttpPost]
