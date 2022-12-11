@@ -100,7 +100,7 @@ export class RegisterComponent implements OnInit {
       this.usuarioService.createUser(newUser).subscribe(async res => {
         let jsonRes = Object.create(res);
 
-        this.loginService.login({ email: jsonRes.email, password: jsonRes.password }).subscribe();
+        this.loginService.login({ email: jsonRes.email, password: jsonRes.password }).subscribe(res => console.log(res));
       });
 
       this.modalService.dismissAll();
