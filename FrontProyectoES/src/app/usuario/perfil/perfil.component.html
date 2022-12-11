@@ -79,7 +79,7 @@
           <tbody>
             <tr *ngFor="let reserva of reservas">
               <td class="m-3 p-2 col"><input placeholder="{{ reserva.restaurante.nombre }}" type="text" /></td>
-              <td class="m-3 p-2 col"><input type="date" name="" id="" /></td>
+              <td class="m-3 p-2 col"><input type="text" name="" id="" placeholder="24/06/2022" /></td>
               <td class="m-3 p-2 col">
                 <div *ngFor="let servicio of reserva.servicios">
                   <input placeholder="{{ servicio.nombre }}" type="text" />
