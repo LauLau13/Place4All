@@ -11,7 +11,6 @@ export class HttpInterceptorService implements HttpInterceptor {
         .set('Access-Control-Allow-Origin', '*')
         .set('Access-Control-Allow-Methods', 'GET,POST,OPTIONS,DELETE,PUT'),
     });
-    console.log(headers);
     return next.handle(headers);
   }
 }
