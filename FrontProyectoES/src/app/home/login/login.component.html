@@ -6,7 +6,7 @@
         Por favor vuelve a intentarlo.
       </ngb-alert>
     </p>
-    <h3 class="justify-content-center d-flex align-items-center mt-3 mb-3">Login</h3>
+    <h3 class="justify-content-center d-flex align-items-center mt-3 mb-3">Iniciar sesión</h3>
     <div class="bg-light w-auto">
       <svg
         class="m-2"
@@ -24,21 +24,21 @@
           stroke-linecap="round"
           stroke-linejoin="round"></path>
       </svg>
-      <input [formControl]="loginForm.controls.email" class="p-2 w-75" type="text" placeholder="username" />
+      <input [formControl]="loginForm.controls.email" class="p-2 w-75" type="text" placeholder="Email" />
     </div>
     <div class="bg-light w-auto mt-2">
       <svg class="m-2" width="24px" height="24px" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></svg>
-      <input [formControl]="loginForm.controls.password" class="p-2 w-75" type="password" placeholder="password" />
+      <input [formControl]="loginForm.controls.password" class="p-2 w-75" type="password" placeholder="contraseña" />
     </div>
     <div class="btRecord ms-4 d-flex justify-content-between">
       <div class="m-4">
-        <a href="">Forgot password?</a>
+        <a href="">¿Olvidaste tu contraseña?</a>
       </div>
     </div>
     <div class="botonesInferiores mx-auto w-75 align-items-center column align-self-center mb-5">
       <div class="d-grid gap-2">
-        <button class="btn btn-primary" type="button" (click)="login()">Log In</button>
-        <button class="btn btn-secondary" type="button" (click)="openRegister()">Register</button>
+        <button class="btn btn-primary" type="button" (click)="login()">Iniciar sesión</button>
+        <button class="btn btn-secondary" type="button" (click)="openRegister()">Registrarse</button>
       </div>
     </div>
   </div>

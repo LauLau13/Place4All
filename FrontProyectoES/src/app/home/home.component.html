@@ -2,8 +2,8 @@
   <div class="background d-flex flex-column align-items-center justify-content-between rounded">
     <div class="d-flex justify-content-center align-content-center">
       <div class="bg-light p-2 mt-3 rounded d-flex flex-column align-items-center justify-content-between">
-        <h1 class="mb-0">Find the table</h1>
-        <h1 class="mb-0">that fits <strong> YOU </strong></h1>
+        <h1 class="mb-0">Encuentra el espacio</h1>
+        <h1 class="mb-0">que se adapta a <strong> TI </strong></h1>
       </div>
     </div>
     <div class="pb-4 w-75">
@@ -12,9 +12,9 @@
           type="text"
           [(ngModel)]="searchField"
           class="form-control form-input rounded-pill"
-          placeholder="Search anything..."
+          placeholder="En que ciudad estas?"
           (keydown.enter)="onSearch()" />
-        <span class="left-pan"
+        <span class="left-pan" (click)="onSearch()"
           ><i class="fa fa-microphone"
             ><svg
               width="24px"
