@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
 const routes: Routes = [
   {
     path: '',
@@ -10,6 +9,10 @@ const routes: Routes = [
   {
     path: 'perfil',
     loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule),
+  },
+  {
+    path: 'restaurantes',
+    loadChildren: () => import('./restaurante/restaurante.module').then(m => m.RestauranteModule),
   },
 ];
 
