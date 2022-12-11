@@ -11,6 +11,6 @@ export class HomeComponent implements OnInit {
   searchField: string = '';
   ngOnInit(): void {}
   onSearch() {
-    this.router.navigate(['/restaurantes', { ciuidad: this.searchField }]);
+    this.router.navigate(['/restaurantes', { ciudad: this.searchField }]);
   }
 }
