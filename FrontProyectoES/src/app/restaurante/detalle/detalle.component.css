@@ -1,0 +1,13 @@
+img {
+  width: 500px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 5rem 1rem;
+}
+
+.maxwidth-sm {
+  max-width: 200px;
+}

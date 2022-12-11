@@ -1,25 +1,85 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
+using Microsoft.OpenApi.Models;
+using WebApi.Modelos;
+using WebApi.Servicios;
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+namespace WebApi
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+            //Creación del contenedor de la aplicación llamado builder
+            var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
+                {
+                    policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
+                });
+            });
+            //Configuración de la base de datos en el contenedor builder
+            builder.Services.Configure<DatabaseSettings>(builder.Configuration.GetSection(nameof(DatabaseSettings)));
+
+            //Para evitar errores en la ejecución de la API
+            builder.Services.AddMvc(options =>
+            {
+                //Método que cuando es true recorta el sufijo Async aplicado en los métodos
+                options.SuppressAsyncSuffixInActionNames = false;
+            });
+
+            //Permite el acceso de los servicios a la base de datos
+            builder.Services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
+
+            //Añadir cada servicio de la siguiente manera: services.AddSingleton<{Nombre del servicio}>();
+            builder.Services.AddSingleton<ServicioServicio>();
+            builder.Services.AddSingleton<DireccionServicio>();
+            builder.Services.AddSingleton<UsuarioServicio>();
+            builder.Services.AddSingleton<RestauranteServicio>();
+            builder.Services.AddSingleton<ReservaServicio>();
+            
+            //A�ade los controladores de los servicios
+            builder.Services.AddControllers();
+
+            //Añade un documento swagger para controlar la API
+            builder.Services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApi", Version = "v1" });
+            });
+
+            //Tras realizar los pasos anteriores se ejecuta el builder
+            var app = builder.Build();
+            
+            //Configuración de las peticiones con HTTP
+            if (builder.Environment.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WebApi v1"));
+            }
+
+            app.UseHttpsRedirection();
+
+            app.UseRouting();
+
+            app.UseCors(MyAllowSpecificOrigins);
+
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
+            app.Run();
+        }
+        
+        
+    }
 }
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
