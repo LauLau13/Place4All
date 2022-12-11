@@ -5,9 +5,11 @@ services:
     build: ./WebApi
     ports:
       - "7157:80"
+    image: a26087/proyecto-es-back
 
   #Levantamos el front
   frontproyectoes:
     build: ./FrontProyectoES
     ports:
       - "26087:80"
+    image: a26087/proyecto-es-front
