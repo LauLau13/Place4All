@@ -35,6 +35,7 @@ namespace WebApi
             builder.Services.AddSingleton<DireccionServicio>();
             builder.Services.AddSingleton<UsuarioServicio>();
             builder.Services.AddSingleton<RestauranteServicio>();
+            builder.Services.AddSingleton<ReservaServicio>();
             
             //A�ade los controladores de los servicios
             builder.Services.AddControllers();
