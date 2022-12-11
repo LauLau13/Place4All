@@ -25,6 +25,8 @@ namespace WebApi.Servicios
         //Cogemos el id del usuario y comparamos el usuario con el id de usuario
         public Usuario Get(string id) => _usuarios.Find<Usuario>(usuario => usuario.Id == id).FirstOrDefault();
 
+        public Usuario Login(string email, string password) =>
+            _usuarios.Find<Usuario>(u => u.Email == email && u.Password == password).FirstOrDefault();
         //Creamos un nuevo usuario, si ese usuario no tienen ID se crea un nuevo ID y se inserta en la base de datos
         public Usuario Create(Usuario usuario)
         {
