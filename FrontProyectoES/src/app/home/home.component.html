@@ -8,7 +8,12 @@
     </div>
     <div class="pb-4 w-75">
       <div class="form">
-        <input type="text" class="form-control form-input rounded-pill" placeholder="Search anything..." />
+        <input
+          type="text"
+          [(ngModel)]="searchField"
+          class="form-control form-input rounded-pill"
+          placeholder="Search anything..."
+          (keydown.enter)="onSearch()" />
         <span class="left-pan"
           ><i class="fa fa-microphone"
             ><svg
