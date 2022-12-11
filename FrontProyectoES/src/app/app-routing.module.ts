@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PerfilComponent } from './usuario/perfil/perfil.component';
 const routes: Routes = [
   {
     path: '',
@@ -9,6 +10,10 @@ const routes: Routes = [
   {
     path: 'restaurantes',
     loadChildren: () => import('./restaurante/restaurante.module').then(m => m.RestauranteModule),
+  },
+  {
+    path: 'perfil',
+    component: PerfilComponent,
   },
 ];
 
