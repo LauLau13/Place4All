@@ -17,10 +17,8 @@ export class ListadoComponent implements OnInit {
 
   ngOnInit(): void {
     this.routeSubs = this.route.params.subscribe(params => {
-      console.log(params);
       this.ciudad = params['ciudad'];
       if (this.ciudad) {
-        console.log(this.ciudad);
         this.busquedaCiudad();
         return;
       }
@@ -33,7 +31,6 @@ export class ListadoComponent implements OnInit {
       ciudad: this.ciudad,
     };
     this.restauranteService.getRestauranteByCiudad(JSON.stringify(body)).subscribe((res: any) => {
-      console.log(res);
       this.restaurantes = res;
     });
   }
