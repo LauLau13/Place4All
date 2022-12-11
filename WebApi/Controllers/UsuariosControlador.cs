@@ -98,11 +98,11 @@ namespace WebApi.Controllers
         
         [HttpPost("login")]
         [AllowAnonymous]
-        public async Task<IActionResult> Post(string email, string password)
+        public async Task<IActionResult> Post(Login login)
         {
-            if (email != null && password != null)
+            if (login.Email != null && login.Password != null)
             {
-                var user = await GetUser(email, password);
+                var user = await GetUser(login.Email, login.Password);
 
                 if (user != null)
                 {
@@ -125,7 +125,12 @@ namespace WebApi.Controllers
                         expires: DateTime.UtcNow.AddMinutes(10),
                         signingCredentials: signIn);
 
-                    return Ok(new JwtSecurityTokenHandler().WriteToken(token));
+                    var response = new LoginResponse
+                    {
+                        Token= new JwtSecurityTokenHandler().WriteToken(token),
+                        Usuario = user
+                    };
+                    return Ok(response);
                 }
                 else
                 {
@@ -140,4 +145,10 @@ namespace WebApi.Controllers
 
         private async Task<Usuario> GetUser(string email, string password) => _usuarioServicio.Login(email, password);
     }
+}
+
+public class LoginResponse
+{
+    public string Token { get; set; }
+    public Usuario Usuario { get; set; }
 }
