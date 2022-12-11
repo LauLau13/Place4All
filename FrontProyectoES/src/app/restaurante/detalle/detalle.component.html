@@ -1,29 +1,41 @@
-<div class="d-flex justify-content-between me-5 ms-5">
-  <div class="md-flex justify-content-start h2">{{ restaurante.nombre }}</div>
-  <div class="d-flex justify-content-end">
-    <button class="m-1 me-2 btn btn-secundary">editar</button>
-    <button class="m-1 btn btn-primary" (click)="reservar()">reservar</button>
-  </div>
-</div>
-<hr class="me-5 ms-5 border border-primary border-2" />
-<div class="w-100 h-100">
-  <div class="d-flex w-auto ms-5 me-5 w-100 h-100">
-    <div class="border border-primary w-100 h-auto"><a href="{{ restaurante.imagen }}"></a></div>
-    <div class="w-100 h-100">
-      <div class="border border-dark p-3">
-        {{ restaurante.descripcion }}
-      </div>
-      <div class="border border-dark p-3">Teléfono: {{ restaurante.telefono }}</div>
+<div class="m-5">
+  <div class="d-flex justify-content-between me-5 ms-5">
+    <div class="md-flex justify-content-start h2">{{ restaurante.nombre }}</div>
+    <div class="d-flex justify-content-end">
+      <button class="m-1 me-2 btn btn-secundary">editar</button>
+      <button class="m-1 btn btn-primary" (click)="reservar()">reservar</button>
     </div>
   </div>
-  <!--servicios banner inferior-->
-  <div class="text-center align-self-center me-5 ms-5 p-3 border border-dark">
-    <!--No se centran :/-->
-    <div class="p-2 h4">Servicios</div>
-    <div class="fila1">
-      <div class="row m-2 w-auto h-auto" *ngFor="let servicio of restaurante.servicio">
-        <div class="m-3 border border-success col p-2">{{ servicio.nombre }}</div>
+  <hr class="me-5 ms-5 border border-primary border-2" />
+  <div class="w-100 h-100 border border-dark mb-5">
+    <div class="d-flex w-auto w-100 h-100">
+      <div class="border-primary h-auto"><img src="{{ restaurante.imagen }}" /></div>
+      <div class="w-100 h-100">
+        <div class="p-3">Teléfono: {{ restaurante.telefono }}</div>
+        <div class="border-top border-bottom border-dark p-3">
+          {{ restaurante.descripcion }}
+        </div>
+        <!--servicios banner inferior-->
+        <div class="p-3 h-100">
+          <div class="p-2 h4">Servicios</div>
+          <div class="grid">
+            <div *ngFor="let servicio of restaurante.servicio">
+              <button
+                type="button"
+                class="btn btn-light btn-outline-secondary maxwidth-sm"
+                ngbPopover="{{ servicio.descripcion }}"
+                triggers="mouseenter:mouseleave"
+                popoverTitle="{{ servicio.nombre }}">
+                {{ servicio.nombre }}
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<ng-template>
+  <app-reserva #modal [restaurante]="restaurante"></app-reserva>
+</ng-template>

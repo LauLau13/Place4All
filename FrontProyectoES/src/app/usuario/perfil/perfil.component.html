@@ -63,7 +63,7 @@
       </div>
     </div>
     <!--Reservas-->
-    <div class="me-5 ms-5 border border-1 border-info p-3" *ngIf="reservas.length > 0">
+    <div class="me-5 ms-5 border border-1 border-info p-3" *ngIf="reservas">
       <h4 class="d-flex justify-content-center m-2 p-2">Reservas</h4>
       <div class="d-flex justify-content-center">
         <table class="table table-bordered text-center">
@@ -78,9 +78,13 @@
           <tbody>
             <tr *ngFor="let reserva of reservas">
               <td class="m-3 p-2 col"><input placeholder="{{ reserva.restaurante.nombre }}" type="text" /></td>
-              <td class="m-3 p-2 col"><input type="date" name="" id="" placeholder="{{ reserva.fecha }}" /></td>
-              <td class="m-3 p-2 col"><input placeholder="{{ reserva.servicios }}" type="text" /></td>
-              <td class="m-3 p-2 col"><input placeholder="{{ reserva.instruccionesespeciales }}" type="text" /></td>
+              <td class="m-3 p-2 col"><input type="date" name="" id="" /></td>
+              <td class="m-3 p-2 col">
+                <div *ngFor="let servicio of reserva.servicios">
+                  <input placeholder="{{ servicio.nombre }}" type="text" />
+                </div>
+              </td>
+              <td class="m-3 p-2 col"><input placeholder="{{ reserva.instruccionesEspeciales }}" type="text" /></td>
             </tr>
           </tbody>
         </table>

@@ -6,7 +6,7 @@
   <div class="grid-container me-5 ms-5">
     <div *ngFor="let restaurante of restaurantes" class="foreach">
       <!--restaurante 1-->
-      <div class="container border border-primary col rounded">
+      <div class="container border border-primary col rounded" (click)="goToRestaurante(restaurante.id)">
         <div class="img-container">
           <img src="{{ restaurante.imagen }}" class="rounded-top" alt="imagen {{ restaurante.nombre }}" />
         </div>
@@ -14,7 +14,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="ps-2 pt-2">{{ restaurante.nombre }}</div>
           <div>
-            <button class="border border-0 bg-white pt-2">
+            <button class="border border-0 bg-white pt-2" (click)="reservar(restaurante)">
               <svg
                 width="24px"
                 height="24px"

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { Restaurante } from 'src/app/shared/Models/restaurante.model';
 import { RestauranteService } from 'src/app/shared/services/restauranteServicio/restaurante.service';
+import { ReservaComponent } from './reserva/reserva.component';
 
 @Component({
   selector: 'app-listado',
@@ -13,7 +15,12 @@ export class ListadoComponent implements OnInit {
   routeSubs: Subscription;
   ciudad: string;
   restaurantes: Restaurante[];
-  constructor(private route: ActivatedRoute, private restauranteService: RestauranteService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private restauranteService: RestauranteService,
+    private router: Router,
+    private modalService: NgbModal
+  ) {}
 
   ngOnInit(): void {
     this.routeSubs = this.route.params.subscribe(params => {
@@ -38,5 +45,12 @@ export class ListadoComponent implements OnInit {
     this.restauranteService.getRestaurantes().subscribe((res: any) => {
       this.restaurantes = res;
     });
+  }
+  goToRestaurante(id: string) {
+    this.router.navigate(['/restaurantes', id]);
+  }
+  reservar(restaurante: Restaurante) {
+    let modal = this.modalService.open(ReservaComponent);
+    modal.componentInstance.restaurante = restaurante;
   }
 }
