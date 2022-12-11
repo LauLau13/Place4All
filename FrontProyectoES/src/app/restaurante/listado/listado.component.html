@@ -1,154 +1,20 @@
 <div class="justify-content-between me-5 ms-5">
-  <div class="me-5 ms-5 md-flex justify-content-start h2">Restaurantes en Ciudad</div>
+  <div class="me-5 ms-5 md-flex justify-content-start h2" *ngIf="ciudad">Restaurantes en "{{ ciudad }}"</div>
+  <div class="me-5 ms-5 md-flex justify-content-start h2" *ngIf="!ciudad">Restaurantes</div>
   <hr class="me-5 ms-5 border border-primary border-2" />
 
   <div class="grid-container me-5 ms-5">
-    <div>
+    <div *ngFor="let restaurante of restaurantes" class="foreach">
       <!--restaurante 1-->
-      <div class="container border border-primary col p-2">
-        <div>imagen<img src="" alt="" /></div>
-        <hr />
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="">Nombre restaurante</div>
-          <div>
-            <button class="border border-0 bg-white">
-              <svg
-                width="24px"
-                height="24px"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                color="#000000">
-                <path
-                  d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 002 2h14a2 2 0 002-2v-9H3zM3 10V6a2 2 0 012-2h2M7 2v4M21 10V6a2 2 0 00-2-2h-.5"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </svg>
-            </button>
-          </div>
+      <div class="container border border-primary col rounded">
+        <div class="img-container">
+          <img src="{{ restaurante.imagen }}" class="rounded-top" alt="imagen {{ restaurante.nombre }}" />
         </div>
-        <hr />
-        <div class="d-flex">
-          Descripcion: Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum velit aperiam itaque placeat culpa expedita,
-          Architecto.
-        </div>
-      </div>
-    </div>
-    <div>
-      <!--restaurante 2-->
-      <div class="container m-1 border border-primary col p-2">
-        <div>imagen<img src="" alt="" /></div>
-        <hr />
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="">Nombre restaurante</div>
-          <div>
-            <button class="border border-0 bg-white">
-              <svg
-                width="24px"
-                height="24px"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                color="#000000">
-                <path
-                  d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 002 2h14a2 2 0 002-2v-9H3zM3 10V6a2 2 0 012-2h2M7 2v4M21 10V6a2 2 0 00-2-2h-.5"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <hr />
-        <div class="d-flex">
-          Descripcion: Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum velit aperiam itaque placeat culpa expedita,
-          Architecto.
-        </div>
-      </div>
-    </div>
-    <div>
-      <!--restaurante 3-->
-      <div class="container border border-primary col p-2 m-1">
-        <div>imagen<img src="" alt="" /></div>
-        <hr />
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="">Nombre restaurante</div>
-          <div>
-            <button class="border border-0 bg-white">
-              <svg
-                width="24px"
-                height="24px"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                color="#000000">
-                <path
-                  d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 002 2h14a2 2 0 002-2v-9H3zM3 10V6a2 2 0 012-2h2M7 2v4M21 10V6a2 2 0 00-2-2h-.5"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <hr />
-        <div class="d-flex">
-          Descripcion: Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum velit aperiam itaque placeat culpa expedita,
-          Architecto.
-        </div>
-      </div>
-    </div>
-    <div>
-      <!--restaurante 4-->
-      <div class="container m-1 border border-primary col p-2">
-        <div>imagen<img src="" alt="" /></div>
-        <hr />
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="">Nombre restaurante</div>
-          <div>
-            <button class="border border-0 bg-white">
-              <svg
-                width="24px"
-                height="24px"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                color="#000000">
-                <path
-                  d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 002 2h14a2 2 0 002-2v-9H3zM3 10V6a2 2 0 012-2h2M7 2v4M21 10V6a2 2 0 00-2-2h-.5"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <hr />
-        <div class="d-flex">
-          Descripcion: Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum velit aperiam itaque placeat culpa expedita,
-          Architecto.
-        </div>
-      </div>
-    </div>
 
-    <div>
-      <!--restaurante 5-->
-      <div class="container m-1 border border-primary col p-2">
-        <div>imagen<img src="" alt="" /></div>
-        <hr />
         <div class="d-flex justify-content-between align-items-center">
-          <div class="">Nombre restaurante</div>
+          <div class="ps-2 pt-2">{{ restaurante.nombre }}</div>
           <div>
-            <button class="border border-0 bg-white">
+            <button class="border border-0 bg-white pt-2">
               <svg
                 width="24px"
                 height="24px"
@@ -168,43 +34,8 @@
           </div>
         </div>
         <hr />
-        <div class="d-flex">
-          Descripcion: Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum velit aperiam itaque placeat culpa expedita,
-          Architecto.
-        </div>
-      </div>
-    </div>
-    <div>
-      <!--restaurante 6-->
-      <div class="container m-1 border border-primary col p-2">
-        <div>imagen<img src="" alt="" /></div>
-        <hr />
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="">Nombre restaurante</div>
-          <div>
-            <button class="border border-0 bg-white">
-              <svg
-                width="24px"
-                height="24px"
-                stroke-width="1.5"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                color="#000000">
-                <path
-                  d="M15 4V2m0 2v2m0-2h-4.5M3 10v9a2 2 0 002 2h14a2 2 0 002-2v-9H3zM3 10V6a2 2 0 012-2h2M7 2v4M21 10V6a2 2 0 00-2-2h-.5"
-                  stroke="#000000"
-                  stroke-width="1.5"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <hr />
-        <div class="d-flex">
-          Descripcion: Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum velit aperiam itaque placeat culpa expedita,
-          Architecto.
+        <div class="d-flex ps-2 pb-2">
+          {{ restaurante.descripcion }}
         </div>
       </div>
     </div>
