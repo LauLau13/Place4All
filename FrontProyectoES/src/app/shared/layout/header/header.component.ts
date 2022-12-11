@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {}
 
   goToLogin() {
-    if (localStorage.getItem('usuario') !== null || localStorage.getItem('usuario') !== undefined) {
+    if (localStorage.getItem('usuario') !== null && localStorage.getItem('usuario') !== undefined) {
       this.router.navigate(['/perfil']);
       return;
     }

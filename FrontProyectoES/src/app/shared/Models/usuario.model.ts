@@ -1,7 +1,7 @@
 import { Direccion } from './direccion.model';
 
 export interface Usuario {
-  id: string;
+  id?: string;
   nombre: string;
   apellido: string;
   genero: string;
