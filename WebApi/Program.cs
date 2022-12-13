@@ -12,14 +12,19 @@ namespace WebApi
     {
         public static void Main(string[] args)
         {
+            //Nombre de la politica
             var  MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
             //Creación del contenedor de la aplicación llamado builder
             var builder = WebApplication.CreateBuilder(args);
 
+            //Creamos la politica de CORS
             builder.Services.AddCors(options =>
             {
+                //Le añadimos un el nombre que hemos creado arriba
                 options.AddPolicy(name: MyAllowSpecificOrigins, policy =>
                 {
+                    //Todos los headers, todos los métodos y todos los origines
+                    //TODO Restringir el origen de las llamadas
                     policy.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin();
                 });
             });
@@ -43,7 +48,7 @@ namespace WebApi
             builder.Services.AddSingleton<RestauranteServicio>();
             builder.Services.AddSingleton<ReservaServicio>();
             
-            //A�ade los controladores de los servicios
+            //Añade los controladores de los servicios
             builder.Services.AddControllers();
 
             //Añade un documento swagger para controlar la API
