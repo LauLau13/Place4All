@@ -1,4 +1,4 @@
-/* const PROXY_CONFIG = [
+const PROXY_CONFIG = [
   {
     context: [''],
     target: 'https://localhost:7157',
@@ -7,4 +7,3 @@
 ];
 
 module.exports = PROXY_CONFIG;
- */

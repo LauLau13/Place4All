@@ -1,0 +1,45 @@
+<form [formGroup]="loginForm">
+  <div class="bg-light justify-content-center d-flex flex-column align-items-center">
+    <p *ngIf="error" class="pt-5 px-5">
+      <ngb-alert type="danger" [dismissible]="false">
+        <strong>Los datos introducidos son incorrectos.</strong> <br />
+        Por favor vuelve a intentarlo.
+      </ngb-alert>
+    </p>
+    <h3 class="justify-content-center d-flex align-items-center mt-3 mb-3">Iniciar sesión</h3>
+    <div class="bg-light w-auto">
+      <svg
+        class="m-2"
+        width="24px"
+        height="24px"
+        stroke-width="1.5"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        color="#000000">
+        <path
+          d="M5 20v-1a7 7 0 017-7v0a7 7 0 017 7v1M12 12a4 4 0 100-8 4 4 0 000 8z"
+          stroke="#000000"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+      <input [formControl]="loginForm.controls.email" class="p-2 w-75" type="text" placeholder="Email" />
+    </div>
+    <div class="bg-light w-auto mt-2">
+      <svg class="m-2" width="24px" height="24px" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></svg>
+      <input [formControl]="loginForm.controls.password" class="p-2 w-75" type="password" placeholder="contraseña" />
+    </div>
+    <div class="btRecord ms-4 d-flex justify-content-between">
+      <div class="m-4">
+        <a href="">¿Olvidaste tu contraseña?</a>
+      </div>
+    </div>
+    <div class="botonesInferiores mx-auto w-75 align-items-center column align-self-center mb-5">
+      <div class="d-grid gap-2">
+        <button class="btn btn-primary" type="button" (click)="login()">Iniciar sesión</button>
+        <button class="btn btn-secondary" type="button" (click)="openRegister()">Registrarse</button>
+      </div>
+    </div>
+  </div>
+</form>

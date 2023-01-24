@@ -1,0 +1,27 @@
+<div class="container rounded shadow-sm">
+  <form action="" [formGroup]="reservaForm">
+    <div class="row">
+      <div class="col-md-6 col-12 mb-4">
+        <div class="form-control d-flex flex-column box">
+          <p class="h-blue">COMENSALES</p>
+          <input formControlName="comensales" class="inputbox" type="number" />
+        </div>
+      </div>
+      <div class="col-md-6 col-12 mb-4">
+        <div class="form-control d-flex flex-column box">
+          <p class="h-blue">Fecha</p>
+          <input formControlName="fecha" class="inputbox" type="date" />
+        </div>
+      </div>
+    </div>
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="form-control d-flex flex-column box">
+          <p class="h-blue">Si tienes instrucciones especiales, dejanos saberlo</p>
+          <input type="textarea" formControlName="comentario" class="inputbox" />
+        </div>
+      </div>
+    </div>
+    <div class="btn btn-primary form-control text-center" (click)="reservar()">Reserva</div>
+  </form>
+</div>
