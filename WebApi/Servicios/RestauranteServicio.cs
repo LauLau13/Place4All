@@ -8,8 +8,6 @@ namespace WebApi.Servicios
     {
         //Damos a la lista de Restaurantes el nombre de _restaurantes
         private readonly IMongoCollection<Restaurante> _restaurantes;
-        //Creamos la variable DirecciónServicio del restaurante como _direccionServicio
-        private readonly DireccionServicio _direccionServicio;
 
         //Conexión de la base de datos con los objetos restaurantes
         public RestauranteServicio(IDatabaseSettings settings)
@@ -42,8 +40,8 @@ namespace WebApi.Servicios
         //Borramos el restaurante pasado como parámetro de entrada de la lista de restaurantes de la bd identificándolo mediante su Id
         public void Delete(Restaurante restauranteIn) => _restaurantes.DeleteOne(restaurante => restaurante.Id == restauranteIn.Id);
 
-        public Task<List<Restaurante>> Search(IBuscaCiudad busqueda) => _restaurantes
-            .Find(restaurante => restaurante.Direccion.Ciudad.ToLower() == busqueda.Ciudad.ToLower()).ToListAsync();
-
+        public async Task<List<Restaurante>> Search(IBuscaCiudad busqueda) => await _restaurantes.Find(
+            (Restaurante restaurante) =>
+                restaurante.Direccion.Ciudad == busqueda.Ciudad).ToListAsync();
     }
 }

@@ -27,6 +27,7 @@ public class ReservaServicio
     public async Task Create(Reserva reserva)
     {
         reserva.Id ??= new BsonObjectId(ObjectId.GenerateNewId()).ToString();
+        reserva.FechaReserva = DateTime.Now;
         await _reservas.InsertOneAsync(reserva);
         return;
     }
