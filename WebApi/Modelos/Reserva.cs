@@ -8,4 +8,5 @@ public class Reserva
     public int Personas { get; set; }
     public List<Servicio> Servicios { get; set; }
     public string InstruccionesEspeciales { get; set; }
+    public DateTime FechaReserva { get; set; }
 }

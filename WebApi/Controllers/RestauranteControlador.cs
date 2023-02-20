@@ -78,7 +78,7 @@ namespace WebApi.Controllers
         }
         
         [HttpPost("search")]
-        public async Task Search(IBuscaCiudad ciudad) => await _servicioRestaurante.Search(ciudad);
+        public async Task<List<Restaurante>> Search(IBuscaCiudad ciudad) => await _servicioRestaurante.Search(ciudad);
         
         private Restaurante HasDireccion (Restaurante restaurante)
         {
