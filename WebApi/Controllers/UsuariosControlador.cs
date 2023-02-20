@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using WebApi.Modelos;
-using WebApi.Servicios;
+using WebApi.Services;
 
 namespace WebApi.Controllers
 {
@@ -13,11 +13,11 @@ namespace WebApi.Controllers
     [Route("Usuario")]
     public class UsuarioControlador : ControllerBase
     {
-        private readonly UsuarioServicio _usuarioServicio;
-        private readonly DireccionServicio _direccionServicio;
+        private readonly UsuariosServicio _usuarioServicio;
+        private readonly DireccionesServicio _direccionServicio;
         private readonly IConfiguration _configuration;
 
-        public UsuarioControlador(UsuarioServicio usuarioServicio, DireccionServicio direccionServicio, IConfiguration config)
+        public UsuarioControlador(UsuariosServicio usuarioServicio, DireccionesServicio direccionServicio, IConfiguration config)
         {
             _usuarioServicio = usuarioServicio;
             _direccionServicio = direccionServicio;
@@ -25,13 +25,13 @@ namespace WebApi.Controllers
         }
         
         [HttpGet]
-        public ActionResult<List<Usuario>> Get() => _usuarioServicio.Get();
+        public ActionResult<List<Usuarios>> Get() => _usuarioServicio.Get();
 
         [HttpGet("{id:length(24)}")]
-        public ActionResult<Usuario> Get(string id) => _usuarioServicio.Get(id);
+        public ActionResult<Usuarios> Get(string id) => _usuarioServicio.Get(id);
 
         [HttpPost]
-        public ActionResult<Usuario> Create(Usuario usuario)
+        public ActionResult<Usuarios> Create(Usuarios usuario)
         {
             var usuarioD = HasDireccion(usuario);
             var usuarioCreada = _usuarioServicio.Create(usuarioD);
@@ -40,7 +40,7 @@ namespace WebApi.Controllers
         }
 
         [HttpPut("{id:length(24)}")]
-        public IActionResult Put(string id, Usuario usuarioInf)
+        public IActionResult Put(string id, Usuarios usuarioInf)
         {
             var usuario = _usuarioServicio.Get(id);
 
@@ -70,7 +70,7 @@ namespace WebApi.Controllers
 
             return NoContent();
         }
-        private Usuario HasDireccion(Usuario usuario)
+        private Usuarios HasDireccion(Usuarios usuario)
         {
             
             if (usuario.Direccion.Id == null)
@@ -91,7 +91,7 @@ namespace WebApi.Controllers
             return usuario;
         }
 
-        private void DeleteDireccion(Usuario usuario)
+        private void DeleteDireccion(Usuarios usuario)
         {
             _direccionServicio.Remove(usuario.Direccion);
         }
@@ -143,12 +143,12 @@ namespace WebApi.Controllers
             }
         }
 
-        private async Task<Usuario> GetUser(string email, string password) => _usuarioServicio.Login(email, password);
+        private async Task<Usuarios> GetUser(string email, string password) => _usuarioServicio.Login(email, password);
     }
 }
 
 public class LoginResponse
 {
     public string Token { get; set; }
-    public Usuario Usuario { get; set; }
+    public Usuarios Usuario { get; set; }
 }

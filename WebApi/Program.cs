@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using WebApi.Modelos;
-using WebApi.Servicios;
+using WebApi.Services;
 
 namespace WebApi
 {
@@ -42,11 +42,11 @@ namespace WebApi
             builder.Services.AddSingleton<IDatabaseSettings>(sp => sp.GetRequiredService<IOptions<DatabaseSettings>>().Value);
 
             //Añadir cada servicio de la siguiente manera: services.AddSingleton<{Nombre del servicio}>();
-            builder.Services.AddSingleton<ServicioServicio>();
-            builder.Services.AddSingleton<DireccionServicio>();
-            builder.Services.AddSingleton<UsuarioServicio>();
-            builder.Services.AddSingleton<RestauranteServicio>();
-            builder.Services.AddSingleton<ReservaServicio>();
+            builder.Services.AddSingleton<ServiciosServicio>();
+            builder.Services.AddSingleton<DireccionesServicio>();
+            builder.Services.AddSingleton<UsuariosServicio>();
+            builder.Services.AddSingleton<RestaurantesServicio>();
+            builder.Services.AddSingleton<ReservasServicio>();
             
             //Añade los controladores de los servicios
             builder.Services.AddControllers();
